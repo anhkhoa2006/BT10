@@ -1,13 +1,15 @@
-# BT10 - Demo JWT với Spring Boot 3 & Spring Security 6
+# BT10 - Demo JWT với Spring Boot 3 & Spring Security 6 (Nimbus JOSE + JWT)
 
-Dự án triển khai bài tập thực hành JWT (JSON Web Token) dựa trên bài giảng của ThS. Nguyễn Hữu Trung - Trường Đại học Sư phạm Kỹ thuật TP.HCM (HCMUTE).
+Dự án triển khai bài tập thực hành JWT (JSON Web Token) dựa trên bài giảng của ThS. Nguyễn Hữu Trung - Trường Đại học Sư phạm Kỹ thuật TP.HCM (HCMUTE), sử dụng thư viện **Nimbus JOSE + JWT** (chuẩn RFC 7515, 7516, 7517, 7518, 7519).
 
 ## 🚀 Công nghệ sử dụng
 - **Java 17+**
 - **Spring Boot 3.3.4**
 - **Spring Security 6** (Stateless Session Policy, Custom OncePerRequestFilter)
 - **Spring Data JPA & Hibernate**
-- **JJWT 0.12.6** (`jjwt-api`, `jjwt-impl`, `jjwt-jackson`)
+- **Nimbus JOSE + JWT 9.40** (`com.nimbusds:nimbus-jose-jwt`)
+  - `JWTClaimsSet`, `JWSHeader`, `SignedJWT`
+  - `MACSigner` & `MACVerifier` (HMAC-SHA256)
 - **MySQL / H2 Database**
 - **Thymeleaf & AJAX (jQuery, Bootstrap 5)**
 
@@ -22,7 +24,10 @@ Dự án triển khai bài tập thực hành JWT (JSON Web Token) dựa trên b
 - `vn.iotstar.filter`: `JwtAuthenticationFilter` chặn request và trích xuất `Bearer <token>`
 - `vn.iotstar.models`: DTO (`LoginResponse`, `LoginUserModel`, `RegisterUserModel`)
 - `vn.iotstar.repository`: `UserRepository`
-- `vn.iotstar.services`: `JwtService`, `AuthenticationService`, `UserService`
+- `vn.iotstar.services`:
+  - `JwtService`: Tạo và xác thực JWT bằng Nimbus JOSE + JWT
+  - `AuthenticationService`: Xử lý signup, authenticate
+  - `UserService`: Xử lý user profile
 - `src/main/resources/templates`: `login.html`, `profile.html`
 - `src/main/resources/static/js`: `mainjs.js`
 
